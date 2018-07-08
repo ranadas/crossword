@@ -63,4 +63,20 @@ public class CrosswordResourceTest {
         assertThat(search).isNotNull();
 
     }
+    @Test
+    public void searchFor4Length() {
+        Integer lengthOfWord = 9;
+        String[] searchChars = {"a", "c", ".", "d", ".", ".", ".", "."};
+
+        Map<Integer, Character> characterPos = new HashMap<>();
+        AtomicInteger atomicInteger = new AtomicInteger(0);
+        Arrays.stream(searchChars).forEach(aChar -> {
+            characterPos.put(atomicInteger.getAndIncrement(), new Character(aChar.charAt(0)));
+        });
+
+        List<String> search = crosswordSolver.search(lengthOfWord, characterPos);
+
+        assertThat(search).isNotNull();
+
+    }
 }
