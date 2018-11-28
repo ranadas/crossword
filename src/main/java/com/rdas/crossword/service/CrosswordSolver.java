@@ -1,6 +1,8 @@
 package com.rdas.crossword.service;
 
+import com.rdas.crossword.WordsCache;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
@@ -13,11 +15,11 @@ import java.util.stream.Collectors;
 @Slf4j
 @Component
 public class CrosswordSolver {
-    private List<String> wordList;
+    private final List<String> wordList;
 
-
-    public void setWords(final List<String> wordList) {
-        this.wordList = wordList;
+    @Autowired
+    public CrosswordSolver(WordsCache wordsCache) {
+        wordList = wordsCache.getWordList();
     }
 
     public List<String> search(int length, Map<Integer, Character> characterPos) {

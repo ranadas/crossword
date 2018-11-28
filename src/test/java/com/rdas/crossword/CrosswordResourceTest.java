@@ -29,6 +29,8 @@ public class CrosswordResourceTest {
     @Autowired
     private ResourceLoader resourceLoader;
 
+    @Autowired
+    private WordsCache wordsCache;
     private List<String> wordList;
 
 
@@ -36,7 +38,6 @@ public class CrosswordResourceTest {
     public void init() throws Exception {
         final Resource fileResource = resourceLoader.getResource("classpath:english.txt");
         wordList = Files.readAllLines(Paths.get(fileResource.getURI()), StandardCharsets.UTF_8);
-        crosswordSolver.setWords(wordList);
 
         assertThat(wordList).isNotNull();
     }
@@ -45,6 +46,7 @@ public class CrosswordResourceTest {
     public void contextLoads() {
         assertThat(crosswordSolver).isNotNull();
         assertThat(resourceLoader).isNotNull();
+        assertThat(wordsCache.getWordList()).isNotNull();
     }
 
     @Test

@@ -27,7 +27,8 @@ public class CrosswordResource {
     @Autowired
     private ResourceLoader resourceLoader;
 
-    private List<String> wordList;
+    @Autowired
+    private WordsCache wordsCache;
 
     @GetMapping("search")
     public List<String> searchWord(@RequestParam(name = "len", required = true) Integer lengthOfWord) {
@@ -54,10 +55,5 @@ public class CrosswordResource {
         return crosswordSolver.search(lengthOfWord, characterPos);
     }
 
-    @PostConstruct
-    public void init() throws Exception {
-        final Resource fileResource = resourceLoader.getResource("classpath:word-list.txt");
-        wordList = Files.readAllLines(Paths.get(fileResource.getURI()), StandardCharsets.UTF_8);
-        crosswordSolver.setWords(wordList);
-    }
+
 }

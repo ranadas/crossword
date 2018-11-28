@@ -11,3 +11,5 @@ There are a couple of things to consider:
 
 Additional work:
 java 11
+
+wip - https://www.baeldung.com/spring-boot-actuators
