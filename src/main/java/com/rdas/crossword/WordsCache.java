@@ -12,7 +12,9 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
 
-@Component
+//@Component
+@Deprecated
+// Use hazelcast instance to get the cache instead.
 public class WordsCache {
 
     @Autowired

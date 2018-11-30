@@ -1,10 +1,11 @@
 package com.rdas.crossword.service;
 
-import com.rdas.crossword.WordsCache;
+import com.hazelcast.core.HazelcastInstance;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -15,11 +16,15 @@ import java.util.stream.Collectors;
 @Slf4j
 @Component
 public class CrosswordSolver {
-    private final List<String> wordList;
+    private List<String> wordList;
 
     @Autowired
-    public CrosswordSolver(WordsCache wordsCache) {
-        wordList = wordsCache.getWordList();
+    private HazelcastInstance hazelcastInstance;
+
+    @PostConstruct
+    public void init() {
+        log.info("logging ths {}", hazelcastInstance.getName());
+        wordList = hazelcastInstance.getList("words-list");
     }
 
     public List<String> search(int length, Map<Integer, Character> characterPos) {
