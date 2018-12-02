@@ -1,6 +1,6 @@
 package com.rdas.crossword;
 
-import com.rdas.crossword.service.CrosswordSolver;
+import com.rdas.crossword.unit.service.CrosswordSolver;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,8 +16,12 @@ import java.util.concurrent.atomic.AtomicInteger;
 @Slf4j
 @RestController
 public class CrosswordResource {
-    @Autowired
     private CrosswordSolver crosswordSolver;
+
+    @Autowired
+    public CrosswordResource(CrosswordSolver crosswordSolver) {
+        this.crosswordSolver = crosswordSolver;
+    }
 
     @GetMapping("search")
     public List<String> searchWord(@RequestParam(name = "len", required = true) Integer lengthOfWord) {

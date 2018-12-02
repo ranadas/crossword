@@ -1,8 +1,9 @@
-package com.rdas.crossword.service;
+package com.rdas.crossword.unit.service;
 
 import com.hazelcast.core.HazelcastInstance;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
@@ -16,15 +17,18 @@ import java.util.stream.Collectors;
 @Slf4j
 @Component
 public class CrosswordSolver {
-    private List<String> wordList;
+    private final List<String> wordList;
+    private final HazelcastInstance hazelcast;
 
     @Autowired
-    private HazelcastInstance hazelcastInstance;
+    public CrosswordSolver(@Qualifier("crosswordCacheHzInstance") HazelcastInstance hazelcast) {
+        this.hazelcast = hazelcast;
+        wordList = hazelcast.getList("words-list");
+    }
 
     @PostConstruct
     public void init() {
-        log.info("logging ths {}", hazelcastInstance.getName());
-        wordList = hazelcastInstance.getList("words-list");
+        log.info("\t\t logging instance name  {}", hazelcast.getName());
     }
 
     public List<String> search(int length, Map<Integer, Character> characterPos) {

@@ -13,3 +13,5 @@ Additional work:
 java 11
 
 wip - https://www.baeldung.com/spring-boot-actuators
+
+https://github.com/sivaprasadreddy/spring-boot-microservices-series/blob/master/docker-compose.yml

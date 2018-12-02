@@ -25,6 +25,7 @@
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
         <jacoco.version>0.8.2</jacoco.version>
+        <hazelcast.version>3.11</hazelcast.version>
     </properties>
 
     <dependencies>
@@ -75,10 +76,19 @@
         <dependency>
             <groupId>com.hazelcast</groupId>
             <artifactId>hazelcast</artifactId>
+            <version>${hazelcast.version}</version>
         </dependency>
         <dependency>
             <groupId>com.hazelcast</groupId>
             <artifactId>hazelcast-spring</artifactId>
+            <version>${hazelcast.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.hazelcast</groupId>
+            <artifactId>hazelcast</artifactId>
+            <classifier>tests</classifier>
+            <scope>test</scope>
+            <version>${hazelcast.version}</version>
         </dependency>
     </dependencies>
 
