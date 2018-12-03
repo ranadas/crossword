@@ -15,3 +15,8 @@ java 11
 wip - https://www.baeldung.com/spring-boot-actuators
 
 https://github.com/sivaprasadreddy/spring-boot-microservices-series/blob/master/docker-compose.yml
+
+docker build -t rdasopenjdk11  .
+
+docker run --name crss_instance  -p 5000:8080 -i -t rdasopenjdk11 
+

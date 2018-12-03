@@ -1,3 +1,12 @@
 server:
   servlet:
     context-path: /crss
+
+spring:
+  application:
+    name: crossword-solver
+
+logging:
+  org.springframework.web: DEBUG
+  org.hibernate: DEBUG
+  org.rdas: DEBUG
