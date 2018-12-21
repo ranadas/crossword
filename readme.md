@@ -16,7 +16,19 @@ wip - https://www.baeldung.com/spring-boot-actuators
 
 https://github.com/sivaprasadreddy/spring-boot-microservices-series/blob/master/docker-compose.yml
 
-docker build -t rdasopenjdk11  .
+* Dockerizing Spring Boot (or any executable .jar file)
+    1. Use a Dockerfile to define an image, then build it and run it with plain Docker commands.
+            We build the image so it’ll be available in our local Docker registry. We give it a name with the -t flag, and specify the current directory as the one in which the Dockerfile lives. : 
+                <code>docker build -t sbootopenj11  . </code>
+            We just need to create a container using the new image:    
+                <code>docker run --name crss_instance  -p 5000:8080 -i -t sbootopenj11  </code>    
+            By using the -p flag we’re telling docker to expose the container’s port 8080 (on the right of the colon) on the host’s port 8000 (on the left, our machine). We can access from our machine to localhost:8000 (you can also use your browser) and see the greeting message again, this time coming from the Docker container:
+            
+    2. Use a docker-compose.yml and its command line interface to extend the functionalities when running multiple containers, and simplify it by having a predefined configuration.
+            <code>docker-compose up --scale template=2</code>
+            <code>docker-compose ps</code>
+    3. Use docker to build our java code as well (note that this is more an experiment than a real-life case).
 
-docker run --name crss_instance  -p 5000:8080 -i -t rdasopenjdk11 
+
+
 

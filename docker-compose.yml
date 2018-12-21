@@ -1,12 +1,22 @@
 version: "3"
 
 services:
-  sonarcube:
-    image: sonarcube
+  crss-appli:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    image: sbootopenj11
     ports:
-      - 9000:9000
+    - 8080  # for randomising port, required to create many instances.
+#    - 5000:8080  # if only one instance is to be started.
     networks:
-      - sonarnet
+    - sonarnet
+#  sonarcube:
+#    image: sonarcube
+#    ports:
+#      - 9000:9000
+#    networks:
+#      - sonarnet
 
 
 networks:

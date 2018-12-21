@@ -1,4 +1,4 @@
-package com.rdas.crossword.unit.service;
+package com.rdas.crossword.service;
 
 import com.hazelcast.core.HazelcastInstance;
 import lombok.extern.slf4j.Slf4j;
