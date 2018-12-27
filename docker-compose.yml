@@ -4,7 +4,7 @@ services:
   crss-appli:
     build:
       context: ./
-      dockerfile: Dockerfile
+      dockerfile: crossword-service/src/Dockerfile
     image: sbootopenj11
     ports:
     - 8080  # for randomising port, required to create many instances.

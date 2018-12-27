@@ -28,8 +28,8 @@ public class CrosswordResource {
     @GetMapping("search")
     public List<String> searchWord(@RequestParam(name = "len", required = true) Integer lengthOfWord) {
         Map<Integer, Character> characterPos = new HashMap<>();
-        characterPos.put(0, new Character('p'));
-        characterPos.put(2, new Character('b'));
+        characterPos.put(0, Character.valueOf('p'));
+        characterPos.put(2, Character.valueOf('b'));
         //CrosswordSolver crosswordSolver = applicationContext.getBean(CrosswordSolver.class, wordList);
 
         List<String> wordsFound = crosswordSolver.search(lengthOfWord, characterPos);
@@ -44,7 +44,7 @@ public class CrosswordResource {
         Map<Integer, Character> characterPos = new HashMap<>();
         AtomicInteger atomicInteger = new AtomicInteger(0);
         Arrays.stream(searchChars).forEach(aChar -> {
-            characterPos.put(atomicInteger.getAndIncrement(), new Character(aChar.charAt(0)));
+            characterPos.put(atomicInteger.getAndIncrement(), Character.valueOf(aChar.charAt(0)));
         });
 
         return crosswordSolver.search(lengthOfWord, characterPos);
