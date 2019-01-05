@@ -1,4 +1,4 @@
-package com.rdas.crossword;
+package com.rdas.crossword.config;
 
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +12,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
 
-//@Component
+@Component
 @Deprecated
 // Use hazelcast instance to get the cache instead.
 public class WordsCache {
@@ -25,7 +25,7 @@ public class WordsCache {
 
     @PostConstruct
     public void init() throws Exception {
-        final Resource fileResource = resourceLoader.getResource("classpath:word-list.txt");
+        final Resource fileResource = resourceLoader.getResource("classpath:english.txt");
         wordList = Files.readAllLines(Paths.get(fileResource.getURI()), StandardCharsets.UTF_8);
         //crosswordSolver.setWords(wordList);
     }

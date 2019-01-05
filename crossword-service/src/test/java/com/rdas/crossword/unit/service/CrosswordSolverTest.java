@@ -1,14 +1,11 @@
 package com.rdas.crossword.unit.service;
 
-import com.rdas.crossword.config.HazelcastConfiguration;
+import com.rdas.crossword.bdd.IntegrationTestConfig;
 import com.rdas.crossword.service.CrosswordSolver;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Import;
-import org.springframework.core.annotation.Order;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -20,16 +17,10 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+@Ignore
 @RunWith(SpringRunner.class)
-@ContextConfiguration(classes = {CrosswordSolverTest.TestConfig.class})
+@ContextConfiguration(classes = {IntegrationTestConfig.class})
 public class CrosswordSolverTest {
-
-    @Order(2)
-    @Configuration
-    @Import({HazelcastConfiguration.class})
-    @ComponentScan(basePackages = {"com.rdas.crossword.unit.service","com.rdas.crossword.config"})
-    static class TestConfig {
-    }
 
     @Autowired
     private CrosswordSolver crosswordSolver;

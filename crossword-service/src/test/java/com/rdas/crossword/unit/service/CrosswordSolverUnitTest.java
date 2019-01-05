@@ -4,6 +4,7 @@ import com.hazelcast.core.HazelcastInstance;
 import com.hazelcast.core.IList;
 import com.rdas.crossword.service.CrosswordSolver;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
@@ -27,6 +28,7 @@ import static org.mockito.Mockito.when;
 //https://www.baeldung.com/injecting-mocks-in-spring
 //https://stackoverflow.com/questions/44200720/difference-between-mock-mockbean-and-mockito-mock
 //https://stackoverflow.com/questions/38096629/imap-hazelcast-instance-mock-in-junit
+@Ignore
 @RunWith(SpringRunner.class)
 public class CrosswordSolverUnitTest {
 

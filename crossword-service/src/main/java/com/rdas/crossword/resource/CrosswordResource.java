@@ -1,10 +1,12 @@
-package com.rdas.crossword;
+package com.rdas.crossword.resource;
 
 import com.rdas.crossword.service.CrosswordSolver;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.net.InetAddress;
@@ -48,10 +50,5 @@ public class CrosswordResource {
         });
 
         return crosswordSolver.search(lengthOfWord, characterPos);
-    }
-
-    @GetMapping("hello")
-    public final String helli() throws UnknownHostException {
-        return "Hello! You can find me in " + InetAddress.getLocalHost().getHostAddress();
     }
 }
