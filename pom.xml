@@ -14,5 +14,6 @@
 
     <modules>
         <module>crossword-service</module>
+        <module>sb-hzcast-jet</module>
     </modules>
 </project>

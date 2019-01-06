@@ -3,6 +3,7 @@ package com.rdas.crossword.resource;
 import com.hazelcast.client.HazelcastClient;
 import com.hazelcast.client.config.ClientConfig;
 import com.hazelcast.core.HazelcastInstance;
+import com.hazelcast.core.IMap;
 import com.hazelcast.core.Member;
 import com.rdas.crossword.config.WordsCache;
 import io.swagger.annotations.Api;
@@ -54,7 +55,9 @@ public class DignosticsResource {
         log.info("\n\n HZ CLIENT NAME : {}\n", hzClient.getName());
         String format = String.format(" HZ CLIENT NAME :%s with cache size %d ", hzClient.getName(), wordsCache.getWordList().size());
         //"Hello! You can find me in " + InetAddress.getLocalHost().getHostAddress()  + format;
-        String response = String.format("You can find me in %s, and %s \n", InetAddress.getLocalHost().getHostAddress(), format);
+
+        IMap<String, Integer> requestStash = hazelcast.getMap("requeststash");
+        String response = String.format("You can find me in %s, and %s \n Request info {} ", InetAddress.getLocalHost().getHostAddress(), format, requestStash.toString());
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 }

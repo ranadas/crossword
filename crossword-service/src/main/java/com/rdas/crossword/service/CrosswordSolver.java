@@ -42,10 +42,10 @@ public class CrosswordSolver {
     }
 
     private boolean match(String word, Pattern pattern) {
-        log.info("testing {} with {} ", word, pattern.toString());
+        log.info("\ttesting {} with {} ", word, pattern.toString());
         Matcher matcher = pattern.matcher(word);
         boolean found = matcher.find();
-        log.info("\n {}  is found ? {} \n", word, found);
+        log.info("\t {}  is found ? {} \n", word, found);
         return found;
     }
 
