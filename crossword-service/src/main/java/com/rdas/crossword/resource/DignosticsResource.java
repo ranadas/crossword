@@ -19,8 +19,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.text.DateFormat;
+import java.util.Date;
 import java.util.Set;
 
 @Slf4j
@@ -57,7 +60,19 @@ public class DignosticsResource {
         //"Hello! You can find me in " + InetAddress.getLocalHost().getHostAddress()  + format;
 
         IMap<String, Integer> requestStash = hazelcast.getMap("requeststash");
-        String response = String.format("You can find me in %s, and %s \n Request info {} ", InetAddress.getLocalHost().getHostAddress(), format, requestStash.toString());
+        String response = String.format("You can find me in %s, and %s \n Request info %s ", InetAddress.getLocalHost().getHostAddress(), format, requestStash.toString());
         return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    @GetMapping("time")
+    @ResponseStatus(HttpStatus.OK)
+    public final ResponseEntity<?> time(HttpServletRequest request) throws UnknownHostException {
+        DateFormat df = DateFormat.getDateTimeInstance(
+                DateFormat.LONG,
+                DateFormat.LONG,
+                request.getLocale()
+        );
+
+        return new ResponseEntity<>(df.format(new Date()), HttpStatus.OK);
     }
 }
