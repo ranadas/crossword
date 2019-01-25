@@ -1,0 +1,12 @@
+server:
+  servlet:
+    context-path: /ms
+
+spring:
+  application:
+    name: spring-boot-multithread
+
+
+logging:
+  org.springframework.web: DEBUG
+  org.rdas: DEBUG
