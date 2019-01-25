@@ -15,5 +15,6 @@
     <modules>
         <module>crossword-service</module>
         <module>sb-hzcast-jet</module>
+        <module>sb-multithread</module>
     </modules>
 </project>
