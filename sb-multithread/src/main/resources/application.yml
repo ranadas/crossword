@@ -5,7 +5,8 @@ server:
 spring:
   application:
     name: spring-boot-multithread
-
+  profiles:
+    active: justice
 
 logging:
   org.springframework.web: DEBUG
