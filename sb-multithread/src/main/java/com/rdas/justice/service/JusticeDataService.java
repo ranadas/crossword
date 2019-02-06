@@ -3,6 +3,7 @@ package com.rdas.justice.service;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mongodb.DBObject;
+import com.mongodb.MongoClient;
 import com.rdas.justice.model.JusticeResponse;
 import com.rdas.justice.model.Results;
 import com.rdas.model.GHUser;
@@ -31,6 +32,8 @@ public class JusticeDataService {
         this.mongoTemplate = mongoTemplate;
     }
 
+    @Autowired
+    private MongoClient mongoClient;
 
     @PostConstruct
     public void init() throws Exception {
@@ -71,7 +74,6 @@ public class JusticeDataService {
         }
     }
 
-
     //
     @Async
     public CompletableFuture<Results> saveResult(Results objectToSave, Long counter) throws InterruptedException {
@@ -81,12 +83,12 @@ public class JusticeDataService {
         try {
             // Artificial delay of 1s for demonstration purposes
             Thread.sleep(1000L);
-            //mongoTemplate.save(objectToSave, "justicecollection");
+            mongoTemplate.save(objectToSave, "justicecollection");
             //return CompletableFuture.completedFuture(result);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        log.info("Saving to Mongo too: : " + (System.currentTimeMillis() - start));
+        log.info("Saving to Mongo time: : " + (System.currentTimeMillis() - start));
         return CompletableFuture.completedFuture(objectToSave);
     }
 }

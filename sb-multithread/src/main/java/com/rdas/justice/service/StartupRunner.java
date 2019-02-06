@@ -77,7 +77,8 @@ public class StartupRunner implements CommandLineRunner {
 
 
         // then
-//        List<DBObject> collection = mongoTemplate.findAll(DBObject.class, "justicecollection");
+        List<Results> collection = mongoTemplate.findAll(Results.class, "justicecollection");
+        log.info("Collection {}", collection.size());
         // check size > 0
     }
 }
