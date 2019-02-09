@@ -1,0 +1,19 @@
+server:
+  servlet:
+    context-path: /ml
+  port: 8088
+
+spring:
+#  main:
+#    web-application-type: none
+  application:
+    name: spring-boot-multilingual
+
+logging:
+  org.springframework.web: INFO
+  org.rdas: DEBUG
+
+
+
+
+
