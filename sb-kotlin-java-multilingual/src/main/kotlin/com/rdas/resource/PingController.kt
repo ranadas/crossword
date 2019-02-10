@@ -9,7 +9,7 @@ class PingController(val  hzcastService: HzcastService) {
 
     @GetMapping("/hello")
     fun hello() : String {
-        hzcastService.sample()
-        return "hello world \n"
+        val sample = hzcastService.sample()
+        return "hello world , $sample\n"
     }
 }
