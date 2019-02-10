@@ -25,6 +25,6 @@ class KotlinApplicationTests {
 
         assertNotNull(result)
         assertEquals(result?.statusCode, HttpStatus.OK)
-        //assertEquals(result?.body, "hello world")
+        assertEquals(result?.body, "hello world \n")
     }
 }

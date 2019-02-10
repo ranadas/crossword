@@ -16,5 +16,6 @@
         <module>crossword-service</module>
         <module>sb-hzcast-jet</module>
         <module>sb-multithread</module>
+        <module>sb-kotlin-java-multilingual</module>
     </modules>
 </project>
