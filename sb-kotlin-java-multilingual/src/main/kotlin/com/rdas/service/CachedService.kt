@@ -12,18 +12,24 @@ class CachedService(@Qualifier("crosswordCacheHzInstance") val hazelcast: Hazelc
     private val students: List<Student> = hazelcast.getList("students-list")
 
     fun search(id: Long, beginChars: String): List<Student> {
-
+        val pattern = Pattern.compile("^$beginChars", Pattern.CASE_INSENSITIVE)
         return students.stream()
                 .filter({ stu -> stu.id == id })
-                //.filter({ stu -> match(stu.name, pattern) })
+                .filter({ stu -> match(stu.name, pattern) })
+                .collect(Collectors.toList<Student>())
+    }
+
+    //https://howtodoinjava.com/regex/word-boundary-starts-ends-with/
+    fun search(beginChars: String): List<Student> {
+        val pattern = Pattern.compile("^$beginChars", Pattern.CASE_INSENSITIVE)
+        return students.stream()
+                .filter({ stu -> match(stu.name, pattern) })
                 .collect(Collectors.toList<Student>())
     }
 
     private fun match(word: String, pattern: Pattern): Boolean {
-        //log.info("\ttesting {} with {} ", word, pattern.toString())
         val matcher = pattern.matcher(word)
         val found = matcher.find()
-        //log.info("\t {}  is found ? {} \n", word, found)
         return found
     }
 }
