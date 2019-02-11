@@ -12,7 +12,7 @@ import java.io.Serializable;
 @Data
 @ToString
 public class Student implements Serializable {
-    private Long id;
-    private String name;
-    private String passport;
+    public Long id;
+    public String name;
+    public String passport;
 }

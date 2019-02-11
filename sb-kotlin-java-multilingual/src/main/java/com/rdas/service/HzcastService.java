@@ -18,7 +18,6 @@ public class HzcastService {
     private final HazelcastInstance hazelcastInstance;
     private StudentMyBRepository studentMyBRepository;
 
-
     @Autowired
     public HzcastService(@Qualifier("crosswordCacheHzInstance") HazelcastInstance hazelcastInstance,
                          StudentMyBRepository studentMyBRepository) {
@@ -26,17 +25,15 @@ public class HzcastService {
         this.studentMyBRepository = studentMyBRepository;
     }
 
-
     @PostConstruct
     public void init() {
-        List<Student> studentList = hazelcastInstance.getList("words-list");
+        List<Student> studentList = hazelcastInstance.getList("students-list");
         IntStream.range(0, 100000)
                 .parallel()
                 .forEach(nbr -> {
                             Student student = new Student(Long.valueOf(nbr),
                                     RandomStringUtils.randomAlphabetic(6),
                                     RandomStringUtils.randomNumeric(8));
-                            //System.out.printf(student.toString());
                             studentList.add(student);
                             studentMyBRepository.insert(student);
                         }
@@ -55,6 +52,6 @@ public class HzcastService {
                 .collect(Collectors.toList());
         List<Student> students = studentMyBRepository.selectByKeys(collectedIds);
 
-        return "Sample + " + count;
+        return "Find all count  = " + count;
     }
 }
