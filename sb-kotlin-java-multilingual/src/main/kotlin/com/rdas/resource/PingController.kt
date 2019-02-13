@@ -21,4 +21,9 @@ class PingController(val  hzcastService: HzcastService, val cachedService: Cache
     fun search(@RequestParam(value = "cntain") beginChars: String) : List<Student> {
         return cachedService.search(beginChars)
     }
+
+    @GetMapping("/searchById")
+    fun searchById(@RequestParam(value = "id") id: Long) : Student {
+        return hzcastService.findById(id);
+    }
 }

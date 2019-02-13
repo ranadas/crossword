@@ -54,4 +54,10 @@ public class HzcastService {
 
         return "Find all count  = " + count;
     }
+
+
+    public Student findById(Long id) {
+        Student byId = studentMyBRepository.findById(id);
+        return byId;
+    }
 }
