@@ -2,6 +2,7 @@ package com.rdas;
 
 
 import com.rdas.entity.Student;
+import com.rdas.service.StudentService;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -46,10 +47,8 @@ public class StudentServiceMockRestServiceServerUnitTest {
 
     }
 
-
-    //
     @Autowired
-    private EmployeeService empService;
+    private StudentService empService;
 
     @Autowired
     private RestTemplate restTemplate;
@@ -75,7 +74,7 @@ public class StudentServiceMockRestServiceServerUnitTest {
                         .contentType(MediaType.APPLICATION_JSON)
                         .body(mapper.writeValueAsString(student)));
 
-        Student employee = empService.getEmployee("E001");
+        Student employee = empService.getById(1L);
         mockServer.verify();
         Assert.assertEquals(student, employee);
     }
